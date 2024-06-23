@@ -1,4 +1,4 @@
 (executable
- (public_name c0_compiler)
  (name main)
- (libraries c0_compiler))
+ (public_name c0_compiler)
+ (libraries lexer parser))

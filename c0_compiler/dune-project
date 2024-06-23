@@ -4,23 +4,28 @@
 
 (generate_opam_files true)
 
+(using menhir 3.0)
+
 (source
- (github username/reponame))
+ (github C0-language/c0-compiler))
 
-(authors "Author Name")
+(authors "Revazi Gelenidze")
 
-(maintainers "Maintainer Name")
+(maintainers "Revazi Gelenidze")
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
+(documentation "https://github.com/C0-language/c0-docs")
 
 (package
  (name c0_compiler)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml dune)
- (tags
-  (topics "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+ (synopsis "A compiler for the C0 language")
+ (description
+  "C0 is a simple imperative language with a C-like syntax. This is a compiler for C0 that translates C0 programs to MIPS assembly.")
+ (depends
+  (ocaml
+   (>= 5.1))
+  (dune
+   (>= 3.15.3))
+  (menhir
+   (>= 20231231))))
