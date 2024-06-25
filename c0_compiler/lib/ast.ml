@@ -1,7 +1,7 @@
 module AST = struct
   type le = Le of char
-  type cc = CC of char
   type di = Di of int
+  type cc = CC of char
   type bc = BC of bool
 
   type id =
@@ -116,7 +116,7 @@ module AST = struct
     | FuDS_Seq of fud * fuds
   
   and vad =
-    | Vad of ty * na
+    | VaD of ty * na
 
   and vads =
     | VaDS_Sigle of vad
