@@ -1,3 +1,7 @@
 (library
  (name parser)
- (libraries lexer menhirLib))
+ (public_name c0_compiler.parser)
+ (libraries c0_compiler menhirLib))
+
+(menhir
+ (modules parser))
