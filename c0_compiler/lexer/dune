@@ -1,4 +1,0 @@
-(library
- (name lexer)
- (public_name c0_compiler.lexer)
- (libraries c0_compiler))

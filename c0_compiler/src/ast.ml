@@ -1,4 +1,4 @@
-module AST : sig
+module Ast = struct
   type le = Le of char
   type di = Di of int
   type cc = CC of char
@@ -112,14 +112,14 @@ module AST : sig
     | FuD of ty * na * pads option * vads option * body
 
   and fuds =
-    | FuDS_Sigle of fud
+    | FuDS_Single of fud
     | FuDS_Seq of fud * fuds
   
   and vad =
     | VaD of ty * na
 
   and vads =
-    | VaDS_Sigle of vad
+    | VaDS_Single of vad
     | VaDS_Seq of vad * vads
 
   and ty =

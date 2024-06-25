@@ -37,7 +37,7 @@ rule tokenize = parse
     | "/*" { multiline_comment lexbuf; tokenize lexbuf } (* Multi-line comment *)
 
     (* Digit Constant *)
-    | ['0'-'9'] as digit { DI (int_of_string digit) }\
+    | ['0'-'9'] as digit { DI (int_of_string digit) }
     
     (* Letter Constant *)
     | ['a'-'z' 'A'-'Z' '_'] as letter { LE letter }

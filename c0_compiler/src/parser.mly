@@ -1,51 +1,6 @@
 %{
-  open C0_compiler.Ast
+  open Ast
 %}
-
-// AST Node types:
-%type <prog> prog
-
-%type <tyds> tyds
-%type <tyd> tyd
-%type <te> te
-%type <ty> ty
-
-%type <vads> vads
-%type <vad> vad
-
-%type <fuds> fuds
-%type <fud> fud
-%type <pads> pads
-%type <body> body
-
-%type <sts> sts
-%type <st> st
-
-%type <rst> rst
-%type <pas> pas
-%type <pa> pa
-
-%type <bf> bf
-%type <bt> bt
-%type <be> be
-%type <atom> atom
-
-%type <f> f
-%type <t> t
-%type <e> e
-
-%type <dis> dis
-%type <dile> dile
-%type <diles> diles
-
-%type <na> na
-%type <c> c
-%type <id> id
-
-%type <le> le
-%type <di> di
-%type <cc> cc
-%type <bc> bc
 
 // Lexer Tokens:
 
@@ -81,13 +36,6 @@
 %token LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
 %token EOF
 
-// Specify associativity and precedence of operators
-%left OR
-%left AND
-%nonassoc EQ NEQ
-%nonassoc LESS LESSEQ GREATER GREATEREQ
-%left PLUS MINUS
-%left STAR SLASH
 
 %start <prog> prog
 %%
@@ -125,7 +73,7 @@ te:
 ;
 
 vads:
-    | vad { VaDS_Sigle ($1) }
+    | vad { VaDS_Single ($1) }
     | vad SEMICOLON vads { VaDS_Seq ($1, $3) }
 ;
 
@@ -135,7 +83,7 @@ vad:
 
 // Functions grammar
 fuds:
-    | fud { FuDS_Sigle ($1) }
+    | fud { FuDS_Single ($1) }
     | fud SEMICOLON fuds { FuDS_Seq ($1, $3) }
 ;
 

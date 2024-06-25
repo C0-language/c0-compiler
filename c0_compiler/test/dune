@@ -1,4 +1,0 @@
-(test
- (name test_c0_compiler)
- (libraries c0_compiler)
- (modules test_c0_compiler))

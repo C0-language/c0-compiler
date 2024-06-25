@@ -1,0 +1,17 @@
+(library
+ (name c0_compiler_lib)
+ (modules lexer parser ast)  ; Only lexer, parser, and ast modules here
+ (libraries menhirLib)       ; Specify dependency on Menhir library
+)
+
+(ocamllex lexer)  ; Process lexer.mll to generate lexer.ml
+
+(menhir
+ (modules parser)  ; Process parser.mly to generate parser.ml
+ (flags "--table"))  ; Menhir flags for parser generation
+
+(executable
+ (name main)
+ (public_name c0_compiler)  ; This is the public executable name
+ (modules main)  ; Only the main module is listed here
+ (libraries c0_compiler_lib menhirLib))  ; Depends on the library and menhirLib

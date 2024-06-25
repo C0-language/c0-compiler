@@ -1,5 +1,0 @@
-(executable
- (name main)
- (public_name c0_compiler.main)
- (modules main)
- (libraries c0_compiler c0_compiler.lexer c0_compiler.parser menhirLib))
