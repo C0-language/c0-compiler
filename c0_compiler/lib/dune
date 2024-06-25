@@ -1,2 +1,4 @@
 (library
- (name c0_compiler))
+ (name c0_compiler)
+ (public_name c0_compiler)
+ (modules ast))
