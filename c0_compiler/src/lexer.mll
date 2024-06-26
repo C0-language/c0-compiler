@@ -12,19 +12,19 @@
         raise (LexerError err)
 
     (* Define comment handlers *)
-
+(* 
     (* Single-line comment, ends at the end of the line *)
     let rec singleline_comment lexbuf =
-        match%sedlex lexbuf with
-        | '\n' | eof -> () (* End of line or end of file terminates the comment *)
-        | any -> singleline_comment lexbuf
+        match%ocamllex lexbuf with
+        | '\n' -> tokenize lexbuf (* End of line terminates the comment *)
+        | _ -> singleline_comment lexbuf
 
     (* Multi-line comment, ends with "*/" *)
     let rec multiline_comment lexbuf =
-        match%sedlex lexbuf with
-        | "*/" -> () (* End of comment *)
+        match%ocamllex lexbuf with
+        | "*/" -> tokenize lexbuf (* End of comment *)
         | eof -> failwith "Unterminated multiline comment"
-        | any -> multiline_comment lexbuf
+        | _ -> multiline_comment lexbuf *)
 }
 
 (* Define the tokens of the language *)
@@ -33,11 +33,11 @@ rule tokenize = parse
     | [' ' '\t' '\r' '\n']+ { tokenize lexbuf }
 
     (* Add comments pattern *)
-    | "//" { singleline_comment lexbuf; tokenize lexbuf } (* Single-line comment *)
-    | "/*" { multiline_comment lexbuf; tokenize lexbuf } (* Multi-line comment *)
+    (* | "//" { singleline_comment lexbuf; tokenize lexbuf } (* Single-line comment *)
+    | "/*" { multiline_comment lexbuf; tokenize lexbuf } Multi-line comment *)
 
     (* Digit Constant *)
-    | ['0'-'9'] as digit { DI (int_of_string digit) }
+    | ['0'-'9'] as digit { DI (int_of_char digit) }
     
     (* Letter Constant *)
     | ['a'-'z' 'A'-'Z' '_'] as letter { LE letter }
